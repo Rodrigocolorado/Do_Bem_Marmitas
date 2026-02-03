@@ -1,4 +1,5 @@
 :root{
+  --radius: 22px;   /* arredondamento padrão premium */
   --green:#25D366;        /* WhatsApp */
   --green-2:#128C7E;
   --ink:#0f1a12;
@@ -844,45 +845,25 @@ header.is-compact .menu a{
 }
        /* pode trocar para center se quiser */
 /* ==============================
-   CENTRALIZA TEXTO DA DESCRIÇÃO DOS CARDS
+   BOTÃO WHATSAPP – TAMANHO NORMAL
    ============================== */
 
-/* Garante alinhamento central real */
-.card .content{
-  text-align: center;
+/* Garante que botões NÃO estiquem */
+button.btn,
+.btn{
+  width: center;
+  max-width: fit-content;
+}
+
+/* Botão dentro do formulário (WhatsApp) */
+form .btn.primary{
+  align-self: center;      /* centraliza sem esticar */
+  width: auto;             /* tamanho natural */
+  padding: 12px 18px;      /* igual aos outros botões */
+}
+
+/* Evita herança de largura total */
+form{
   align-items: center;
-}
-
-/* Centraliza título */
-.card h3{
-  text-align: center;
-  width: 100%;
-}
-
-/* 🔴 AQUI ESTÁ A CHAVE 🔴
-   força o parágrafo a centralizar de verdade */
-.card p{
-  text-align: center;
-  width: 100%;
-  margin-inline: auto;
-}
-
-/* Centraliza tags */
-.card .tags{
-  justify-content: center;
-}
-
-/* Parte inferior: empilha e centraliza */
-.card .bottom{
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-/* Preço centralizado */
-.card .price,
-.card .price small{
-  text-align: center;
 }
 
