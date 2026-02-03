@@ -42,10 +42,6 @@ header{
   backdrop-filter: blur(10px);
   background: rgba(250,249,246,.82);
   border-bottom: 1px solid var(--line);
-}
-
-}
-
 
 .nav{
   display:flex;
@@ -754,3 +750,18 @@ header.is-compact .menu a{
   box-shadow: 0 18px 40px rgba(15,26,18,.12);
 }
 
+/* Centraliza o card da seção "Sobre" quando houver apenas 1 painel */
+.about{
+  justify-items: center; /* centraliza os itens dentro do grid */
+}
+
+.about .panel{
+  width: 100%;
+  max-width: 720px; /* controla a largura pra ficar bonito no centro */
+}
+/* Centraliza o card "Atendimento" */
+.contact .panel:last-child{
+  margin-inline: auto;     /* centraliza horizontalmente */
+  text-align: center;      /* centraliza o texto */
+  max-width: 520px;        /* largura elegante */
+}
