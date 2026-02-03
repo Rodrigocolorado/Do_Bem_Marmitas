@@ -765,3 +765,31 @@ header.is-compact .menu a{
   text-align: center;      /* centraliza o texto */
   max-width: 520px;        /* largura elegante */
 }
+/* ==============================
+   CARDS CENTRALIZADOS + 1 POR LINHA (todas as telas)
+   ============================== */
+
+/* O container dos cards: sempre 1 coluna e centralizado */
+.menu-grid{
+  display: grid;
+  grid-template-columns: 1fr;   /* 1 card por linha */
+  gap: 16px;
+  justify-items: auto;        /* centraliza o card dentro do grid */
+}
+
+/* Card: largura responsiva, centralizada, com limite elegante */
+.menu-grid .card{
+  width: min(720px, 100%);      /* no PC fica até 720px; no celular ocupa 100% */
+  margin-inline: auto;          /* garante centralização */
+}
+
+/* Imagem do card: mantém proporção boa em telas grandes e pequenas */
+.menu-grid .card .img{
+  height: clamp(160px, 30vw, 220px);
+}
+
+/* (Opcional) se quiser deixar o conteúdo do card mais alinhado no centro */
+.menu-grid .card .content{ text-align: auto; 
+}
+       /* pode trocar para center se quiser */
+
