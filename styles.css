@@ -5,7 +5,7 @@
   --muted:#5b6b60;
 
   --beige:#f4cb96;        /* fundo do site */
-  --card:#FFF7ED;         /* cards creme */
+  --card:#ffd29a;         /* cards creme */
   --line: rgba(140,110,80,.18);
 
   --shadow: 0 14px 34px rgba(15,26,18,.14);
@@ -599,5 +599,158 @@ header.is-compact .menu a{
   padding: 8px 10px;
 }
 
+/* centraliza título/descrição apenas nesta section */
+.section-head-center{
+  justify-content: center;
+  text-align: center;
+}
+.section-head-center > div{
+  margin: 0 auto;
+}
+.section-head-center p{
+  margin-inline: auto;
+}
+
+/* versão premium da seção de combos */
+.deals-pro{
+  background: linear-gradient(135deg, rgba(255,196,120,.22), rgba(255,247,237,.85));
+}
+.deals-inner-pro{
+  grid-template-columns: 1.2fr .8fr;
+}
+
+/* texto interno */
+.deals-left h3{
+  margin: 0 0 6px;
+}
+.deals-sub{
+  margin: 0 0 14px;
+  color: rgba(15,26,18,.72);
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+/* grid dos “botões” de combos */
+.combo-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* pill estilo botão */
+.combo-pill{
+  position: relative;
+  display: grid;
+  gap: 6px;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.62);
+  box-shadow: 0 12px 28px rgba(15,26,18,.08);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.combo-pill:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(15,26,18,.12);
+  border-color: rgba(37,211,102,.35);
+}
+.combo-title{
+  font-weight: 950;
+  letter-spacing: -.2px;
+  font-size: 16px;
+}
+.combo-meta{
+  color: rgba(15,26,18,.70);
+  font-weight: 750;
+  font-size: 13px;
+}
+.combo-price{
+  font-weight: 950;
+  font-size: 16px;
+}
+
+/* destaque do “médio recomendado / mais vendido” */
+.combo-pill.featured{
+  background: linear-gradient(180deg, rgba(37,211,102,.20), rgba(255,255,255,.68));
+  border-color: rgba(37,211,102,.35);
+}
+.combo-pill.featured .combo-title{
+  font-size: 17px;
+}
+.badge-hot,
+.badge-sell{
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: 11px;
+  letter-spacing: .3px;
+  border: 1px solid rgba(0,0,0,.06);
+}
+.badge-hot{
+  background: rgba(255,255,255,.80);
+  color: rgba(15,26,18,.80);
+}
+.badge-sell{
+  left: auto;
+  right: 12px;
+  background: linear-gradient(180deg, var(--green), #18c85a);
+  color: #063013;
+}
+
+/* notinhas em “botões” */
+.deals-note{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.note-pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.58);
+  font-weight: 850;
+  color: rgba(15,26,18,.74);
+}
+
+/* box lateral mais alinhado */
+.box-pro{
+  background: rgba(255,255,255,.68);
+}
+
+/* responsivo */
+@media (max-width: 980px){
+  .deals-inner-pro{ grid-template-columns: 1fr; }
+  .combo-grid{ grid-template-columns: 1fr; }
+}
 /* (Opcional) Menu mais compacto */
+/* Remove qualquer destaque visual */
+.badge-hot,
+.badge-sell{
+  display: none !important;
+}
+
+/* Neutraliza o combo "featured" caso exista */
+.combo-pill.featured{
+  background: rgba(255,255,255,.62) !important;
+  border-color: var(--line) !important;
+}
+
+/* Remove qualquer diferença de hover entre combos */
+.combo-pill,
+.combo-pill.featured{
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.combo-pill:hover,
+.combo-pill.featured:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(15,26,18,.12);
+}
 
