@@ -791,5 +791,56 @@ header.is-compact .menu a{
 /* (Opcional) se quiser deixar o conteúdo do card mais alinhado no centro */
 .menu-grid .card .content{ text-align: auto; 
 }
+
+/* ==============================
+   TEXTO DOS CARDS CENTRALIZADO (todas as telas)
+   ============================== */
+
+/* Centraliza o card e garante largura responsiva */
+.menu-grid{
+  grid-template-columns: 1fr;   /* 1 por linha */
+  justify-items: center;
+}
+.menu-grid .card{
+  width: min(720px, 100%);
+  margin-inline: auto;
+}
+
+/* Centraliza todo o conteúdo textual do card */
+.card .content{
+  text-align: center;
+  align-items: center;          /* centraliza elementos no eixo horizontal */
+}
+
+/* Centraliza os textos */
+.card h3,
+.card p{
+  text-align: center;
+}
+
+/* Centraliza tags */
+.tags{
+  justify-content: center;
+}
+
+/* Centraliza a parte de baixo (preço + botão) e empilha */
+.card .bottom{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+/* Centraliza preço e observação */
+.price,
+.price small{
+  text-align: center;
+}
+
+/* Botão já está com margin auto, mas reforça centralização */
+.card .btn.primary{
+  margin: 10px auto 14px;
+}
        /* pode trocar para center se quiser */
 
