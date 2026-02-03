@@ -1,6 +1,7 @@
 // Do Bem Marmitas - JS simples (sem frameworks)
 
 const WHATSAPP_NUMBER = "5551991338688"; // DDI+DDD+Número (sem espaços)
+const WHATSAPP_DISPLAY = "(51) 99133-8688"; // formato humano (opcional)
 
 const menuItems = [
   {
@@ -47,28 +48,35 @@ const menuItems = [
   },
 ];
 
-function waLink(message){
+function waLink(message) {
   const text = encodeURIComponent(message);
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
 }
 
-function renderMenu(){
+function renderMenu() {
   const grid = document.querySelector("#menuGrid");
-  if(!grid) return;
+  if (!grid) return;
 
-  grid.innerHTML = menuItems.map((it, idx) => {
-    const tags = it.tags.map(t => `<span class="tag">${t}</span>`).join("");
+  grid.innerHTML = menuItems.map((it) => {
+    const tags = (it.tags || []).map(t => `<span class="tag">${t}</span>`).join("");
     const msg = `Olá! Quero pedir a marmita: ${it.title}.`;
+
     return `
       <article class="card">
         <div class="img" style="background-image:url('${it.img}')"></div>
+
         <div class="content">
           <h3>${it.title}</h3>
           <p>${it.desc}</p>
           <div class="tags">${tags}</div>
         </div>
+
         <div class="bottom">
-          <div class="price">${it.price}<small>Peça pelo WhatsApp</small></div>
+          <div class="price">
+            <small>Pedido rápido</small>
+            <span>WhatsApp</span>
+          </div>
+
           <a class="btn primary" href="${waLink(msg)}" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true">
               <path fill="#063013" d="M19.11 17.78c-.28-.14-1.64-.8-1.9-.9-.25-.1-.44-.14-.62.14-.18.28-.72.9-.88 1.08-.16.18-.32.2-.6.06-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.32.42-.48.14-.16.18-.28.28-.46.1-.18.04-.34-.02-.48-.06-.14-.62-1.5-.85-2.06-.22-.53-.45-.46-.62-.47l-.53-.01c-.18 0-.48.06-.73.34-.25.28-.96.94-.96 2.3 0 1.36.99 2.67 1.13 2.85.14.18 1.95 2.98 4.72 4.17.66.28 1.17.45 1.57.58.66.21 1.27.18 1.75.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32z"/>
@@ -82,39 +90,90 @@ function renderMenu(){
   }).join("");
 }
 
-function handleContact(){
+function handleContact() {
   const form = document.querySelector("#contactForm");
-  const phoneEl = document.querySelectorAll("[data-wa-phone]");
-  phoneEl.forEach(el => el.textContent = WHATSAPP_DISPLAY);
+  const phoneEls = document.querySelectorAll("[data-wa-phone]");
+  phoneEls.forEach(el => (el.textContent = WHATSAPP_DISPLAY));
 
-  if(!form) return;
+  if (!form) return;
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const name = document.querySelector("#name").value.trim();
-    const msg = document.querySelector("#message").value.trim();
+
+    const nameEl = form.querySelector("#name");
+    const msgEl = form.querySelector("#message");
+
+    const name = (nameEl?.value || "").trim();
+    const msg = (msgEl?.value || "").trim();
+
     const text = `Olá! Meu nome é ${name || "..."}. ${msg || "Quero saber mais sobre as marmitas."}`;
-    window.open(waLink(text), "_blank", "noopener");
+    window.open(waLink(text), "_blank", "noopener,noreferrer");
   });
 }
 
-function setYear(){
+function setYear() {
   const y = document.querySelector("#year");
-  if(y) y.textContent = new Date().getFullYear();
+  if (y) y.textContent = new Date().getFullYear();
+}
+
+function setupSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      if (!id || id === "#") return;
+
+      const el = document.querySelector(id);
+      if (!el) return;
+
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   renderMenu();
   handleContact();
   setYear();
-
-  // Smooth scroll links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener("click", (e) => {
-      const id = a.getAttribute("href");
-      const el = document.querySelector(id);
-      if(!el) return;
-      e.preventDefault();
-      el.scrollIntoView({behavior:"smooth", block:"start"});
-    });
-  });
+  setupSmoothScroll();
+  setupHeaderFadeOnScroll();
 });
+
+function setupHeaderCompactOnScroll() {
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  const threshold = 20; // px: a partir de quanto começa a compactar
+
+  const onScroll = () => {
+    if (window.scrollY > threshold) header.classList.add("is-compact");
+    else header.classList.remove("is-compact");
+  };
+
+  // roda na carga e no scroll
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
+function setupHeaderFadeOnScroll() {
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  // em quantos pixels o fade vai de 0 -> 1 (ajuste se quiser)
+  const fadeDistance = 180;
+  const compactThreshold = 20;
+
+  const onScroll = () => {
+    const y = window.scrollY || 0;
+
+    // t = 0..1
+    const t = Math.max(0, Math.min(1, y / fadeDistance));
+    document.documentElement.style.setProperty("--hdr-t", String(t));
+
+    // compacta a partir de X px
+    if (y > compactThreshold) header.classList.add("is-compact");
+    else header.classList.remove("is-compact");
+  };
+
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
