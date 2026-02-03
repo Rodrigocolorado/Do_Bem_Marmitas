@@ -1,55 +1,47 @@
 // Do Bem Marmitas - JS simples (sem frameworks)
 
 const WHATSAPP_NUMBER = "5551991338688"; // DDI+DDD+Número (sem espaços)
-const WHATSAPP_DISPLAY = "(51) 99133-8688";
 
 const menuItems = [
   {
     title: "Panqueca de espinafre (bolonhesa)",
     desc: "Panqueca de espinafre recheada de bolonhesa de carne e ervilha + batata rústica + lâminas de cenoura.",
-    price: "R$ 29,90",
     img: "assets/img/panqueca-espinafre.jpeg",
     tags: ["Sem industrializados", "Nutritiva"]
   },
   {
     title: "Strogonoff de frango",
     desc: "Strogonoff de frango cremoso + arroz negro + brócolis selado.",
-    price: "R$ 29,90",
     img: "assets/img/strogonoff.jpeg",
     tags: ["Equilibrada", "Proteína"]
   },
   {
     title: "Tilápia com crosta de coco",
     desc: "Filé de tilápia assada com crosta de coco e raspas de limão + arroz colorido.",
-    price: "R$ 32,90",
     img: "assets/img/tilapia.jpeg",
     tags: ["Leve", "Saborosa"]
   },
   {
     title: "Carne de panela desfiada",
     desc: "Carne de panela desfiada + chuchu à moda mineira + purê de abóbora cabotiá.",
-    price: "R$ 32,90",
     img: "assets/img/carne-panela.jpeg",
     tags: ["Caseira", "Conforto"]
   },
   {
     title: "Frango desfiado cremoso",
     desc: "Frango desfiado cremoso + purê de batata doce + espaguete de abobrinha.",
-    price: "R$ 29,90",
     img: "assets/img/frango-batata-doce.jpeg",
     tags: ["Sem lactose", "Low carb"]
   },
   {
     title: "Frango xadrez sem shoyo",
     desc: "Frango xadrez sem shoyo + arroz vermelho + legumes + sementes.",
-    price: "R$ 29,90",
     img: "assets/img/frango-xadrez.jpeg",
     tags: ["Sem glúten", "Colorida"]
   },
   {
     title: "Iscas de patinho ao molho",
     desc: "Iscas de patinho ao molho à moda Do Bem + aipim com ervas finas + brócolis ramoso e tomatinho cereja.",
-    price: "R$ 34,90",
     img: "assets/img/iscas-patinho.jpeg",
     tags: ["Premium", "Alta proteína"]
   },
