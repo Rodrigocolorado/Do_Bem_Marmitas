@@ -618,3 +618,16 @@ footer small{ color: rgba(15,26,18,.72); font-weight:750; }
   .contact{ grid-template-columns: 1fr; }
   .menu{ display:none; }
 }
+
+.watermark{
+  margin-left:10px;
+  opacity:.35;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.04em;
+  transition:.3s;
+}
+
+.watermark:hover{
+  opacity:.7;
+}
