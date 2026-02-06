@@ -625,9 +625,11 @@ footer small{ color: rgba(15,26,18,.72); font-weight:750; }
   font-size:12px;
   font-weight:600;
   letter-spacing:.04em;
-  transition:.3s;
+  transition:.25s;
+  text-decoration:none;
 }
 
 .watermark:hover{
-  opacity:.7;
+  opacity:.8;
+  text-decoration:underline;
 }
